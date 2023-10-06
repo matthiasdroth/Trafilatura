@@ -1,0 +1,442 @@
+<doc sitename="Philipp Schmid" title="LLaMA 2 - Every Resource you need" author="Philipp Schmid" date="2023-07-21" url="https://www.philschmid.de/llama-2" hostname="philschmid.de" description="All Resources for LLaMA 2, How to test, train, and deploy it." categories="" tags="" fingerprint="bd5a07e1b12a5984">
+  <main>
+    <head rend="h1">LLaMA 2 - Every Resource you need</head>
+    <list rend="dl">
+      <item rend="dt-1">Published on</item>
+      <item rend="dd-1">5 min read</item>
+    </list>
+    <p>LLaMA 2 is a large language model developed by Meta and is the successor to LLaMA 1. LLaMA 2 is available for free for research and commercial use through providers like AWS, Hugging Face, and others. LLaMA 2 pretrained models are trained on 2 trillion tokens, and have double the context length than LLaMA 1. Its fine-tuned models have been trained on over 1 million human annotations.</p>
+    <p>This blog post includes all relevant resources to help get started quickly. It includes links to:</p>
+    <list rend="ul">
+      <item>What is LLaMA 2?</item>
+      <item>Playgrounds, where you can test the model</item>
+      <item>The research behind the model</item>
+      <item>How good the model is, benchmarks</item>
+      <item>How to correctly prompt the chat model</item>
+      <item>How to train the model using PEFT</item>
+      <item>How to deploy the model for inference</item>
+      <item>and other resources</item>
+    </list>
+    <p>The official announcement from Meta can be found here: https://ai.meta.com/llama/</p>
+    <head rend="h2">What is LLaMa 2?</head>
+    <p>Meta released LLaMA 2, the new state-of-the-art open large language model (LLM). LLaMA 2 represents the next iteration of LLaMA and comes with a commercially-permissive license. LLaMA 2 comes in 3 different sizes - 7B, 13B, and 70B parameters. New improvements compared to the original LLaMA include:</p>
+    <list rend="ul">
+      <item>Trained on 2 trillion tokens of text data</item>
+      <item>Allows commercial use</item>
+      <item>Uses a 4096 default context window (can be expanded)</item>
+      <item>The 70B model adopts grouped-query attention (GQA)</item>
+      <item>Available on Hugging Face Hub</item>
+    </list>
+    <head rend="h2">LLaMA Playgrounds, test it</head>
+    <p>There are a few different playgrounds available to test out interacting with LLaMA 2 Chat:</p>
+    <list rend="ul">
+      <item>HuggingChat allows you to chat with the LLaMA 2 70B model through Hugging Face's conversational interface. This provides a simple way to see the chatbot in action.</item>
+      <item>Hugging Face Spaces has LLaMA 2 models in 7B, 13B and 70B sizes available to test. The interactive demos let you compare different model sizes.</item>
+      <item>Perplexity has both the 7B and 13B LLaMA 2 models accessible through their conversational AI demo. You can chat with the models and provide feedback on the responses.</item>
+    </list>
+    <head rend="h2">Research Behind LLaMA 2</head>
+    <p>LLaMA 2 is a base LLM model and pretrained on publicly available data found online. Additionally Meta released a CHAT version. The first version of the CHAT model was SFT (Supervised fine-tuned) model. After that, LLaMA-2-chat was iteratively improved through Reinforcement Learning from Human Feedback (RLHF). The RLHF process involved techniques like rejection sampling and proximal policy optimization (PPO) to further refine the chatbot. Meta only released the latest RLHF (v5) versions of the model. If you curious how the process was behind checkout:</p>
+    <list rend="ul">
+      <item>Llama 2: Open Foundation and Fine-Tuned Chat Models</item>
+      <item>Llama 2: an incredible open LLM</item>
+      <item>Llama 2: Full Breakdown</item>
+    </list>
+    <head rend="h2">How good is LLaMA 2, benchmarks?</head>
+    <p>Meta claims that “Llama 2 outperforms other open source language models on many external benchmarks, including reasoning, coding, proficiency, and knowledge tests.”. You can find more insights over the performance at:</p>
+    <head rend="h2">How to Prompt LLaMA 2 Chat</head>
+    <p>LLaMA 2 Chat is an open conversational model. Interacting with LLaMA 2 Chat effectively requires providing the right prompts and questions to produce coherent and useful responses. Meta didn’t choose the simplest prompt. Below is the prompt template for single-turn and multi-turn conversations. This template follows the model's training procedure, as described in the LLaMA 2 paper. You can also take a look at LLaMA 2 Prompt Template.</p>
+    <p>Single-turn</p>
+    <code>&lt;s&gt;[INST] &lt;&lt;SYS&gt;&gt;
+{{ system_prompt }}
+&lt;&lt;/SYS&gt;&gt;
+{{ user_message }} [/INST]
+</code>
+    <p>Multi-turn</p>
+    <code>&lt;s&gt;[INST] &lt;&lt;SYS&gt;&gt;
+{{ system_prompt }}
+&lt;&lt;/SYS&gt;&gt;
+{{ user_msg_1 }} [/INST] {{ model_answer_1 }} &lt;/s&gt;&lt;s&gt;[INST] {{ user_msg_2 }} [/INST] {{ model_answer_2 }} &lt;/s&gt;&lt;s&gt;[INST] {{ user_msg_3 }} [/INST]
+</code>
+    <head rend="h2">How to train LLaMA 2</head>
+    <p>LLaMA 2 is openly available making it easy to fine-tune using techniques, .e.g. PEFT. There are great resources available for training your own versions of LLaMA 2:</p>
+    <list rend="ul">
+      <item>Extended Guide: Instruction-tune Llama 2</item>
+      <item>Fine-tune LLaMA 2 (7-70B) on Amazon SageMaker</item>
+      <item>Fine-tuning with PEFT</item>
+      <item>Meta Examples and recipes for Llama model</item>
+      <item>The EASIEST way to finetune LLAMA-v2 on local machine!</item>
+    </list>
+    <head rend="h2">How to Deploy LLaMA 2</head>
+    <p>LLaMA 2 can be deployed in local environment (llama.cpp), using managed services like Hugging Face Inference Endpoints or through or cloud platforms like AWS, Google Cloud, and Microsoft Azure.</p>
+    <list rend="ul">
+      <item>Deploy LLaMa 2 Using text-generation-inference and Inference Endpoints</item>
+      <item>Deploy LLaMA 2 70B using Amazon SageMaker</item>
+      <item>Llama-2-13B-chat locally on your M1/M2 Mac with GPU inference</item>
+    </list>
+    <head rend="h2">Other Sources</head>
+    <p>Let me know if you would like me to expand on any section or add additional details. I aimed to provide a high-level overview of key information related to LLaMA 2's release based on what is publicly known so far.</p>
+    <p>Thanks for reading! If you have any questions, feel free to contact me on Twitter or LinkedIn.</p>
+  </main>
+  <comments/>
+</doc>
+<doc sitename="Philipp Schmid" title="Getting started with Pytorch 2.0 and Hugging Face Transformers" author="Philipp Schmid" date="2023-03-16" url="https://www.philschmid.de/getting-started-pytorch-2-0-transformers" hostname="philschmid.de" description="Learn how to get started with Pytorch 2.0 and Hugging Face Transformers and reduce your training time up to 2x." categories="" tags="" fingerprint="3d5c5038b1134ab2">
+  <main><head rend="h1">Getting started with Pytorch 2.0 and Hugging Face Transformers</head><list rend="dl"><item rend="dt-1">Published on</item><item rend="dd-1">11 min read View Code</item></list><p>On December 2, 2022, the PyTorch Team announced PyTorch 2.0 at the PyTorch Conference, focused on better performance, being faster, more pythonic, and staying as dynamic as before.</p><p>This blog post explains how to get started with PyTorch 2.0 and Hugging Face Transformers today. It will cover how to fine-tune a BERT model for Text Classification using the newest PyTorch 2.0 features.</p><p>You will learn how to:</p><list rend="ol"><item>Setup environment &amp; install Pytorch 2.0</item><item>Load and prepare the dataset</item><item>Fine-tune &amp; evaluate BERT model with the Hugging Face <code>Trainer</code></item><item>Run Inference &amp; test model</item></list><p>Before we can start, make sure you have a Hugging Face Account to save artifacts and experiments.</p><head rend="h2">Quick intro: Pytorch 2.0</head><p>PyTorch 2.0 or, better, 1.14 is entirely backward compatible. Pytorch 2.0 will not require any modification to existing PyTorch code but can optimize your code by adding a single line of code with <code>model = torch.compile(model)</code>. If you ask yourself, why is there a new major version and no breaking changes? The PyTorch team answered this question in their FAQ: “We were releasing substantial new features that we believe change how you meaningfully use PyTorch, so we are calling it 2.0 instead.”</p><p>Those new features include top-level support for TorchDynamo, AOTAutograd, PrimTorch, and TorchInductor.</p><p>This allows PyTorch 2.0 to achieve a 1.3x-2x training time speedups supporting today's 46 model architectures from HuggingFace Transformers</p><p>If you want to learn more about PyTorch 2.0, check out the official “GET STARTED”.</p><p>Now we know how PyTorch 2.0 works, let's get started. 🚀</p><p>Note: This tutorial was created and run on a g5.xlarge AWS EC2 Instance, including an NVIDIA A10G GPU.</p><head rend="h2">1. Setup environment &amp; install Pytorch 2.0</head><p>Our first step is to install PyTorch 2.0 and the Hugging Face Libraries, including <code>transformers</code> and <code>datasets</code>.</p><code># Install PyTorch 2.0 with cuda 11.7
+!pip install "torch&gt;=2.0" --extra-index-url https://download.pytorch.org/whl/cu117 --upgrade --quiet
+</code><p>Additionally, we are installing the latest version of <code>transformers</code> from the <code>main</code> git branch, which includes the native integration of PyTorch 2.0 into the <code>Trainer</code>.</p><code># Install transformers and dataset
+!pip install "transformers==4.27.1" "datasets==2.9.0" "accelerate==0.17.1" "evaluate==0.4.0" tensorboard scikit-learn
+# Install git-fls for pushing model and logs to the hugging face hub
+!sudo apt-get install git-lfs --yes
+</code><p>This example will use the Hugging Face Hub as a remote model versioning service. To push our model to the Hub, you must register on the Hugging Face. If you already have an account, you can skip this step. After you have an account, we will use the <code>login</code> util from the <code>huggingface_hub</code> package to log into our account and store our token (access key) on the disk.</p><code>from huggingface_hub import login
+login(
+token="", # ADD YOUR TOKEN HERE
+add_to_git_credential=True
+)
+</code><head rend="h2">2. Load and prepare the dataset</head><p>To keep the example straightforward, we are training a Text Classification model on the BANKING77 dataset. The BANKING77 dataset provides a fine-grained set of intents (classes) in a banking/finance domain. It comprises 13,083 customer service queries labeled with 77 intents. It focuses on fine-grained single-domain intent detection.</p><p>We will use the <code>load_dataset()</code> method from the 🤗 Datasets library to load the <code>banking77</code></p><code>from datasets import load_dataset
+# Dataset id from huggingface.co/dataset
+dataset_id = "banking77"
+# Load raw dataset
+raw_dataset = load_dataset(dataset_id)
+print(f"Train dataset size: {len(raw_dataset['train'])}")
+print(f"Test dataset size: {len(raw_dataset['test'])}")
+</code><p>Let’s check out an example of the dataset.</p><code>from random import randrange
+random_id = randrange(len(raw_dataset['train']))
+raw_dataset['train'][random_id]
+# {'text': "I can't get google pay to work right.", 'label': 2}
+</code><p>To train our model, we need to convert our "Natural Language" to token IDs. This is done by a Tokenizer, which tokenizes the inputs (including converting the tokens to their corresponding IDs in the pre-trained vocabulary) if you want to learn more about this, out chapter 6 of the Hugging Face Course.</p><code>from transformers import AutoTokenizer
+# Model id to load the tokenizer
+model_id = "bert-base-uncased"
+# Load Tokenizer
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+# Tokenize helper function
+def tokenize(batch):
+return tokenizer(batch['text'], padding='max_length', truncation=True, return_tensors="pt")
+# Tokenize dataset
+raw_dataset = raw_dataset.rename_column("label", "labels") # to match Trainer
+tokenized_dataset = raw_dataset.map(tokenize, batched=True,remove_columns=["text"])
+print(tokenized_dataset["train"].features.keys())
+# dict_keys(['input_ids', 'token_type_ids', 'attention_mask','lable'])
+</code><head rend="h2"><code>Trainer</code></head>3. Fine-tune &amp; evaluate BERT model with the Hugging Face <p>After we have processed our dataset, we can start training our model. We will use the bert-base-uncased model. The first step is to load our model with <code>AutoModelForSequenceClassification</code> class from the Hugging Face Hub. This will initialize the pre-trained BERT weights with a classification head on top. Here we pass the number of classes (77) from our dataset and the label names to have readable outputs for inference.</p><code>from transformers import AutoModelForSequenceClassification
+# Model id to load the tokenizer
+model_id = "bert-base-uncased"
+# Prepare model labels - useful for inference
+labels = tokenized_dataset["train"].features["labels"].names
+num_labels = len(labels)
+label2id, id2label = dict(), dict()
+for i, label in enumerate(labels):
+label2id[label] = str(i)
+id2label[str(i)] = label
+# Download the model from huggingface.co/models
+model = AutoModelForSequenceClassification.from_pretrained(
+model_id, num_labels=num_labels, label2id=label2id, id2label=id2label
+)
+</code><p>We evaluate our model during training. The <code>Trainer</code> supports evaluation during training by providing a <code>compute_metrics</code> method. We use the <code>evaluate</code> library to calculate the f1 metric during training on our test split.</p><code>import evaluate
+import numpy as np
+# Metric Id
+metric = evaluate.load("f1")
+# Metric helper method
+def compute_metrics(eval_pred):
+predictions, labels = eval_pred
+predictions = np.argmax(predictions, axis=1)
+return metric.compute(predictions=predictions, references=labels, average="weighted")
+</code><p>The last step is to define the hyperparameters (<code>TrainingArguments</code>) we use for our training. Here we are adding the PyTorch 2.0 introduced features for fast training times. To use the latest improvements of PyTorch 2.0, we only need to pass the <code>torch_compile</code> option in the <code>TrainingArguments</code>.</p><p>We also leverage the Hugging Face Hub integration of the <code>Trainer</code> to push our checkpoints, logs, and metrics during training into a repository.</p><code>from huggingface_hub import HfFolder
+from transformers import Trainer, TrainingArguments
+# Id for remote repository
+repository_id = "bert-base-banking77-pt2"
+# Define training args
+training_args = TrainingArguments(
+output_dir=repository_id,
+per_device_train_batch_size=16,
+per_device_eval_batch_size=8,
+learning_rate=5e-5,
+num_train_epochs=3,
+# PyTorch 2.0 specifics
+bf16=True, # bfloat16 training
+torch_compile=True, # optimizations
+optim="adamw_torch_fused", # improved optimizer
+# logging &amp; evaluation strategies
+logging_dir=f"{repository_id}/logs",
+logging_strategy="steps",
+logging_steps=200,
+evaluation_strategy="epoch",
+save_strategy="epoch",
+save_total_limit=2,
+load_best_model_at_end=True,
+metric_for_best_model="f1",
+# push to hub parameters
+report_to="tensorboard",
+push_to_hub=True,
+hub_strategy="every_save",
+hub_model_id=repository_id,
+hub_token=HfFolder.get_token(),
+)
+# Create a Trainer instance
+trainer = Trainer(
+model=model,
+args=training_args,
+train_dataset=tokenized_dataset["train"],
+eval_dataset=tokenized_dataset["test"],
+compute_metrics=compute_metrics,
+)
+</code><p>We can start our training by using the <code>train</code> method of the <code>Trainer</code>.</p><code># Start training
+trainer.train()
+</code><p>Using Pytorch 2.0 and supported features in <code>transformers</code> allows us train our BERT model on <code>10_000</code> samples within <code>457.7964</code> seconds.</p><p>We also ran the training without the <code>torch_compile</code> option to compare the training times. The training without <code>torch_compile</code> took 457 seconds, had a <code>train_samples_per_second</code> value of 65.55 and an <code>f1</code> score of <code>0.931</code>.</p><code>{'train_runtime': 696.2701, 'train_samples_per_second': 43.1, 'eval_f1': 0.928788}
+</code><p>By using the <code>torch_compile</code> option and the <code>adamw_torch_fused</code> optimized , we can see that the training time is reduced by 52.5% compared to the training without PyTorch 2.0.</p><code>{'train_runtime': 457.7964, 'train_samples_per_second': 65.55, 'eval_f1': 0.931773}
+</code><p>Our absoulte training time went down from 696s to 457. The <code>train_samples_per_second</code> value increased from 43 to 65. The <code>f1</code> score is the same/slighty better than the training without <code>torch_compile</code>.</p><p>Pytorch 2.0 is incredible powerful! 🚀</p><p>Lets save our results and tokenizer to the Hugging Face Hub and create a model card.</p><code># Save processor and create model card
+tokenizer.save_pretrained(repository_id)
+trainer.create_model_card()
+trainer.push_to_hub()
+</code><head rend="h2">4. Run Inference &amp; test model</head><p>To wrap up this tutorial, we will run inference on a few examples and test our model. We will use the <code>pipeline</code> method from the <code>transformers</code> library to run inference on our model.</p><code>from transformers import pipeline
+# load model from huggingface.co/models using our repository id
+classifier = pipeline("sentiment-analysis", model=repository_id, tokenizer=repository_id, device=0)
+sample = "I have been waiting longer than expected for my bank card, could you provide information on when it will arrive?"
+pred = classifier(sample)
+print(pred)
+# [{'label': 'card_arrival', 'score': 0.9903606176376343}]
+</code><head rend="h2">Conclusion</head><p>In this tutorial, we learned how to use PyTorch 2.0 to train a text classification model on the BANKING77 dataset. We saw that PyTorch 2.0 is a powerful tool to speed up your training times. In our example running on a NVIDIA A10G we managed to achieve 52.5% better performance. The Hugging Face Trainer allows you to easily integrate PyTorch 2.0 into your training pipeline by simply adding the <code>torch_compile</code> option to the <code>TrainingArguments</code>. We can further benefit from PyTorch 2.0 by using the new fused AdamW optimizer when bf16 is available.</p><p>Additionally, I want to mentioned that we reduced the training time by 52%, which could be interpreted in a cost saving of 52% for the training or in 52% faster iterations cycles and time to production. You should be able to see even better improvements by using A100 GPUs or by reducing the "Trainer" overhead, e.g. removing evaluation and logging.</p><p>PyTorch 2.0 is now officially launched and we are excited to see what the future brings. 🚀</p><p>Thanks for reading! If you have any questions, feel free to contact me on Twitter or LinkedIn.</p></main>
+  <comments/>
+</doc>
+<doc sitename="Philipp Schmid" title="Efficient Large Language Model training with LoRA and Hugging Face" author="Philipp Schmid" date="2023-03-23" url="https://www.philschmid.de/fine-tune-flan-t5-peft" hostname="philschmid.de" description="Learn how to fine-tune Google's FLAN-T5 XXL on a Single GPU using LoRA And Hugging Face Transformers." categories="" tags="" fingerprint="755e1fb0919a08f2">
+  <main>
+    <head rend="h1">Efficient Large Language Model training with LoRA and Hugging Face</head>
+    <list rend="dl">
+      <item rend="dt-1">Published on</item>
+      <item rend="dd-1">13 min read View Code</item>
+    </list>
+    <p>In this blog, we are going to show you how to apply Low-Rank Adaptation of Large Language Models (LoRA) to fine-tune FLAN-T5 XXL (11 billion parameters) on a single GPU. We are going to leverage Hugging Face Transformers, Accelerate, and PEFT.</p>
+    <p>You will learn how to:</p>
+    <list rend="ol">
+      <item>Setup Development Environment</item>
+      <item>Load and prepare the dataset</item>
+      <item>Fine-Tune T5 with LoRA and bnb int-8</item>
+      <item>Evaluate &amp; run Inference with LoRA FLAN-T5</item>
+    </list>
+    <head rend="h3">Quick intro: PEFT or Parameter Efficient Fine-tuning</head>
+    <p>PEFT, or Parameter Efficient Fine-tuning, is a new open-source library from Hugging Face to enable efficient adaptation of pre-trained language models (PLMs) to various downstream applications without fine-tuning all the model's parameters. PEFT currently includes techniques for:</p>
+    <list rend="ul">
+      <item>LoRA: LORA: LOW-RANK ADAPTATION OF LARGE LANGUAGE MODELS</item>
+      <item>Prefix Tuning: P-Tuning v2: Prompt Tuning Can Be Comparable to Fine-tuning Universally Across Scales and Tasks</item>
+      <item>P-Tuning: GPT Understands, Too</item>
+      <item>Prompt Tuning: The Power of Scale for Parameter-Efficient Prompt Tuning</item>
+    </list>
+    <p>Note: This tutorial was created and run on a g5.2xlarge AWS EC2 Instance, including 1 NVIDIA A10G.</p>
+    <head rend="h2">1. Setup Development Environment</head>
+    <p>In our example, we use the PyTorch Deep Learning AMI with already set up CUDA drivers and PyTorch installed. We still have to install the Hugging Face Libraries, including transformers and datasets. Running the following cell will install all the required packages.</p>
+    <code># install Hugging Face Libraries
+!pip install "peft==0.2.0"
+!pip install "transformers==4.27.2" "datasets==2.9.0" "accelerate==0.17.1" "evaluate==0.4.0" "bitsandbytes==0.37.1" loralib --upgrade --quiet
+# install additional dependencies needed for training
+!pip install rouge-score tensorboard py7zr
+</code>
+    <head rend="h2">2. Load and prepare the dataset</head>
+    <p>we will use the samsum dataset, a collection of about 16k messenger-like conversations with summaries. Conversations were created and written down by linguists fluent in English.</p>
+    <code>{
+"id": "13818513",
+"summary": "Amanda baked cookies and will bring Jerry some tomorrow.",
+"dialogue": "Amanda: I baked cookies. Do you want some?\r\nJerry: Sure!\r\nAmanda: I'll bring you tomorrow :-)"
+}
+</code>
+    <p>To load the <code>samsum</code> dataset, we use the <code>load_dataset()</code> method from the 🤗 Datasets library.</p>
+    <code>from datasets import load_dataset
+# Load dataset from the hub
+dataset = load_dataset("samsum")
+print(f"Train dataset size: {len(dataset['train'])}")
+print(f"Test dataset size: {len(dataset['test'])}")
+# Train dataset size: 14732
+# Test dataset size: 819
+</code>
+    <p>To train our model, we need to convert our inputs (text) to token IDs. This is done by a 🤗 Transformers Tokenizer. If you are not sure what this means, check out chapter 6 of the Hugging Face Course.</p>
+    <code>from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+model_id="google/flan-t5-xxl"
+# Load tokenizer of FLAN-t5-XL
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+</code>
+    <p>Before we can start training, we need to preprocess our data. Abstractive Summarization is a text-generation task. Our model will take a text as input and generate a summary as output. We want to understand how long our input and output will take to batch our data efficiently.</p>
+    <code>from datasets import concatenate_datasets
+import numpy as np
+# The maximum total input sequence length after tokenization.
+# Sequences longer than this will be truncated, sequences shorter will be padded.
+tokenized_inputs = concatenate_datasets([dataset["train"], dataset["test"]]).map(lambda x: tokenizer(x["dialogue"], truncation=True), batched=True, remove_columns=["dialogue", "summary"])
+input_lenghts = [len(x) for x in tokenized_inputs["input_ids"]]
+# take 85 percentile of max length for better utilization
+max_source_length = int(np.percentile(input_lenghts, 85))
+print(f"Max source length: {max_source_length}")
+# The maximum total sequence length for target text after tokenization.
+# Sequences longer than this will be truncated, sequences shorter will be padded."
+tokenized_targets = concatenate_datasets([dataset["train"], dataset["test"]]).map(lambda x: tokenizer(x["summary"], truncation=True), batched=True, remove_columns=["dialogue", "summary"])
+target_lenghts = [len(x) for x in tokenized_targets["input_ids"]]
+# take 90 percentile of max length for better utilization
+max_target_length = int(np.percentile(target_lenghts, 90))
+print(f"Max target length: {max_target_length}")
+</code>
+    <p>We preprocess our dataset before training and save it to disk. You could run this step on your local machine or a CPU and upload it to the Hugging Face Hub.</p>
+    <code>def preprocess_function(sample,padding="max_length"):
+# add prefix to the input for t5
+inputs = ["summarize: " + item for item in sample["dialogue"]]
+# tokenize inputs
+model_inputs = tokenizer(inputs, max_length=max_source_length, padding=padding, truncation=True)
+# Tokenize targets with the `text_target` keyword argument
+labels = tokenizer(text_target=sample["summary"], max_length=max_target_length, padding=padding, truncation=True)
+# If we are padding here, replace all tokenizer.pad_token_id in the labels by -100 when we want to ignore
+# padding in the loss.
+if padding == "max_length":
+labels["input_ids"] = [
+[(l if l != tokenizer.pad_token_id else -100) for l in label] for label in labels["input_ids"]
+]
+model_inputs["labels"] = labels["input_ids"]
+return model_inputs
+tokenized_dataset = dataset.map(preprocess_function, batched=True, remove_columns=["dialogue", "summary", "id"])
+print(f"Keys of tokenized dataset: {list(tokenized_dataset['train'].features)}")
+# save datasets to disk for later easy loading
+tokenized_dataset["train"].save_to_disk("data/train")
+tokenized_dataset["test"].save_to_disk("data/eval")
+</code>
+    <head rend="h2">3. Fine-Tune T5 with LoRA and bnb int-8</head>
+    <p>In addition to the LoRA technique, we will use bitsanbytes LLM.int8() to quantize out frozen LLM to int8. This allows us to reduce the needed memory for FLAN-T5 XXL ~4x.</p>
+    <p>The first step of our training is to load the model. We are going to use philschmid/flan-t5-xxl-sharded-fp16, which is a sharded version of google/flan-t5-xxl. The sharding will help us to not run off of memory when loading the model.</p>
+    <code>from transformers import AutoModelForSeq2SeqLM
+# huggingface hub model id
+model_id = "philschmid/flan-t5-xxl-sharded-fp16"
+# load model from the hub
+model = AutoModelForSeq2SeqLM.from_pretrained(model_id, load_in_8bit=True, device_map="auto")
+</code>
+    <p>Now, we can prepare our model for the LoRA int-8 training using <code>peft</code>.</p>
+    <code>from peft import LoraConfig, get_peft_model, prepare_model_for_int8_training, TaskType
+# Define LoRA Config
+lora_config = LoraConfig(
+r=16,
+lora_alpha=32,
+target_modules=["q", "v"],
+lora_dropout=0.05,
+bias="none",
+task_type=TaskType.SEQ_2_SEQ_LM
+)
+# prepare int-8 model for training
+model = prepare_model_for_int8_training(model)
+# add LoRA adaptor
+model = get_peft_model(model, lora_config)
+model.print_trainable_parameters()
+# trainable params: 18874368 || all params: 11154206720 || trainable%: 0.16921300163961817
+</code>
+    <p>As you can see, here we are only training 0.16% of the parameters of the model! This huge memory gain will enable us to fine-tune the model without memory issues.</p>
+    <p>Next is to create a <code>DataCollator</code> that will take care of padding our inputs and labels. We will use the <code>DataCollatorForSeq2Seq</code> from the 🤗 Transformers library.</p>
+    <code>from transformers import DataCollatorForSeq2Seq
+# we want to ignore tokenizer pad token in the loss
+label_pad_token_id = -100
+# Data collator
+data_collator = DataCollatorForSeq2Seq(
+tokenizer,
+model=model,
+label_pad_token_id=label_pad_token_id,
+pad_to_multiple_of=8
+)
+</code>
+    <p>The last step is to define the hyperparameters (<code>TrainingArguments</code>) we want to use for our training.</p>
+    <code>from transformers import Seq2SeqTrainer, Seq2SeqTrainingArguments
+output_dir="lora-flan-t5-xxl"
+# Define training args
+training_args = Seq2SeqTrainingArguments(
+output_dir=output_dir,
+auto_find_batch_size=True,
+learning_rate=1e-3, # higher learning rate
+num_train_epochs=5,
+logging_dir=f"{output_dir}/logs",
+logging_strategy="steps",
+logging_steps=500,
+save_strategy="no",
+report_to="tensorboard",
+)
+# Create Trainer instance
+trainer = Seq2SeqTrainer(
+model=model,
+args=training_args,
+data_collator=data_collator,
+train_dataset=tokenized_dataset["train"],
+)
+model.config.use_cache = False # silence the warnings. Please re-enable for inference!
+</code>
+    <p>Let's now train our model and run the cells below. Note that for T5, some layers are kept in <code>float32</code> for stability purposes.</p>
+    <code># train model
+trainer.train()
+</code>
+    <p>The training took ~10:36:00 and cost <code>~13.22$</code> for 10h of training. For comparison a full fine-tuning on FLAN-T5-XXL with the same duration (10h) requires 8x A100 40GBs and costs ~322$.</p>
+    <p>We can save our model to use it for inference and evaluate it. We will save it to disk for now, but you could also upload it to the Hugging Face Hub using the <code>model.push_to_hub</code> method.</p>
+    <code># Save our LoRA model &amp; tokenizer results
+peft_model_id="results"
+trainer.model.save_pretrained(peft_model_id)
+tokenizer.save_pretrained(peft_model_id)
+# if you want to save the base model to call
+# trainer.model.base_model.save_pretrained(peft_model_id)
+</code>
+    <p>Our LoRA checkpoint is only 84MB small and includes all of the learnt knowleddge for samsum.</p>
+    <head rend="h2">4. Evaluate &amp; run Inference with LoRA FLAN-T5</head>
+    <p>We are going to use <code>evaluate</code> library to evaluate the <code>rogue</code> score. We can run inference using <code>PEFT</code> and <code>transformers</code>. For our FLAN-T5 XXL model, we need at least 18GB of GPU memory.</p>
+    <code>import torch
+from peft import PeftModel, PeftConfig
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+# Load peft config for pre-trained checkpoint etc.
+peft_model_id = "results"
+config = PeftConfig.from_pretrained(peft_model_id)
+# load base LLM model and tokenizer
+model = AutoModelForSeq2SeqLM.from_pretrained(config.base_model_name_or_path, load_in_8bit=True, device_map={"":0})
+tokenizer = AutoTokenizer.from_pretrained(config.base_model_name_or_path)
+# Load the Lora model
+model = PeftModel.from_pretrained(model, peft_model_id, device_map={"":0})
+model.eval()
+print("Peft model loaded")
+</code>
+    <p>Let’s load the dataset again with a random sample to try the summarization.</p>
+    <code>from datasets import load_dataset
+from random import randrange
+# Load dataset from the hub and get a sample
+dataset = load_dataset("samsum")
+sample = dataset['test'][randrange(len(dataset["test"]))]
+input_ids = tokenizer(sample["dialogue"], return_tensors="pt", truncation=True).input_ids.cuda()
+# with torch.inference_mode():
+outputs = model.generate(input_ids=input_ids, max_new_tokens=10, do_sample=True, top_p=0.9)
+print(f"input sentence: {sample['dialogue']}\n{'---'* 20}")
+print(f"summary:\n{tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0]}")
+</code>
+    <p>Nice! our model works! Now, lets take a closer look and evaluate it against the <code>test</code> set of processed dataset from <code>samsum</code>. Therefore we need to use and create some utilities to generate the summaries and group them together. The most commonly used metrics to evaluate summarization task is rogue_score short for Recall-Oriented Understudy for Gisting Evaluation). This metric does not behave like the standard accuracy: it will compare a generated summary against a set of reference summaries.</p>
+    <code>import evaluate
+import numpy as np
+from datasets import load_from_disk
+from tqdm import tqdm
+# Metric
+metric = evaluate.load("rouge")
+def evaluate_peft_model(sample,max_target_length=50):
+# generate summary
+outputs = model.generate(input_ids=sample["input_ids"].unsqueeze(0).cuda(), do_sample=True, top_p=0.9, max_new_tokens=max_target_length)
+prediction = tokenizer.decode(outputs[0].detach().cpu().numpy(), skip_special_tokens=True)
+# decode eval sample
+# Replace -100 in the labels as we can't decode them.
+labels = np.where(sample['labels'] != -100, sample['labels'], tokenizer.pad_token_id)
+labels = tokenizer.decode(labels, skip_special_tokens=True)
+# Some simple post-processing
+return prediction, labels
+# load test dataset from distk
+test_dataset = load_from_disk("data/eval/").with_format("torch")
+# run predictions
+# this can take ~45 minutes
+predictions, references = [] , []
+for sample in tqdm(test_dataset):
+p,l = evaluate_peft_model(sample)
+predictions.append(p)
+references.append(l)
+# compute metric
+rogue = metric.compute(predictions=predictions, references=references, use_stemmer=True)
+# print results
+print(f"Rogue1: {rogue['rouge1']* 100:2f}%")
+print(f"rouge2: {rogue['rouge2']* 100:2f}%")
+print(f"rougeL: {rogue['rougeL']* 100:2f}%")
+print(f"rougeLsum: {rogue['rougeLsum']* 100:2f}%")
+# Rogue1: 50.386161%
+# rouge2: 24.842412%
+# rougeL: 41.370130%
+# rougeLsum: 41.394230%
+</code>
+    <p>Our PEFT fine-tuned FLAN-T5-XXL achieved a rogue1 score of <code>50.38%</code> on the test dataset. For comparison a full fine-tuning of flan-t5-base achieved a rouge1 score of 47.23. That is a <code>3%</code> improvements.</p>
+    <p>It is incredible to see that our LoRA checkpoint is only 84MB small and model achieves better performance than a smaller fully fine-tuned model.</p>
+    <p>Thanks for reading! If you have any questions, feel free to contact me on Twitter or LinkedIn.</p>
+  </main>
+  <comments/>
+</doc>

@@ -1,0 +1,3 @@
+https://www.philschmid.de/llama-2
+https://www.philschmid.de/getting-started-pytorch-2-0-transformers
+https://www.philschmid.de/fine-tune-flan-t5-peft
